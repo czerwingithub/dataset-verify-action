@@ -32,21 +32,21 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - '-t'
-    - '"{{input.token}}"'
-    - '--scalyr-server'
-    - '"{{input.scalyr-server}}"'
-    - '--start'
-    - '"{{input.start}}"'
-    - '--end'
-    - '"{{input.end}}"'
-    - '-eq'
-    - '"{{input.row-count-eq}}"'
-    - '-lt'
-    - '"{{input.row-count-lt}}"'
-    - '-gt'
-    - '"{{input.row-count-gt}}"'
-    - '"{{input.query}}"'
+    - -t
+    - "${{inputs.token}}"
+    - --scalyr-server
+    - "${{inputs.scalyr-server}}"
+    - --start
+    - "${{inputs.start}}"
+    - --end
+    - "${{inputs.end}}"
+    - -eq
+    - "${{inputs.row-count-eq}}"
+    - -lt
+    - "${{inputs.row-count-lt}}"
+    - -gt
+    - "${{inputs.row-count-gt}}"
+    - "${{inputs.query}}"
 
   entrypoint: '/action/remove_empty_args_and_invoke.sh'
 
