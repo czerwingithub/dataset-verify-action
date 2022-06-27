@@ -4,7 +4,7 @@ branding:
   icon: 'book-open'
   color: 'green'
 inputs:
-  input-one:  # id of input
+  input one:  # id of input
     description: 'Who to greet'
     required: true
     default: 'The default'
