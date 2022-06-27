@@ -2,9 +2,12 @@
 
 import argparse
 import json
+import os
 import subprocess
 import sys
 import traceback
+
+SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 
 class Verifier():
     @staticmethod
@@ -77,9 +80,13 @@ def verify(tool_path, scalyr_server, token, query, verifier, purpose, start, end
         print(query_stderr, file=sys.stderr)
         return 1
 
+def replace_script_dir(path):
+    return path.replace("$SCRIPT_DIR", SCRIPT_DIR)
+
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("-tp", "--tool-path", type=str, help="The path to the scalyr-tool script", default="./scalyr")
+    parser.add_argument("-tp", "--tool-path", type=str, help="The path to the scalyr-tool script.  $SCRIPT_DIR is substituted with the directory this script resides in",
+                        default="$SCRIPT_DIR/scalyr")
     parser.add_argument("-t", "--token", type=str, help="", required=True)
     parser.add_argument("--scalyr-server", type=str, help="", default="https://www.scalyr.com")
     parser.add_argument("-p", "--purpose", type=str, default="required query")
@@ -101,7 +108,7 @@ def main():
     elif not args.row_count_gt is None:
         verifier = Verifier.greater_than(args.row_count_gt)
 
-    return verify(args.tool_path, args.scalyr_server, args.token, args.query, verifier, args.purpose, args.start, "" if args.end == "now" else args.end)
+    return verify(replace_script_dir(args.tool_path), args.scalyr_server, args.token, args.query, verifier, args.purpose, args.start, "" if args.end == "now" else args.end)
     
     # Arguments
     # location of scalyr tool script
