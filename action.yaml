@@ -3,6 +3,11 @@ description: 'Verifies a DataSet power query returns the correct expected number
 branding:
   icon: 'book-open'
   color: 'green'
+inputs:
+  input-one:  # id of input
+    description: 'Who to greet'
+    required: true
+    default: 'The default'
 runs:
   using: 'docker'
   image: 'Dockerfile'
