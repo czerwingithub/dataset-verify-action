@@ -5,7 +5,7 @@ RUN mkdir /action
 
 COPY remove_empty_args_and_invoke.sh /action/
 COPY dataset_verify.py /action/
-ADD https://https://raw.githubusercontent.com/scalyr/scalyr-tool/{$SCALYR_TOOL_SHA}/scalyr /action/scalyr
+ADD https://raw.githubusercontent.com/scalyr/scalyr-tool/{$SCALYR_TOOL_SHA}/scalyr /action/scalyr
 
 RUN chmod a+x /action/remove_empty_args_and_invoke.sh
 RUN chmod a+x /action/dataset_verify.py
