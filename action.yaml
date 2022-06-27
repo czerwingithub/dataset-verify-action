@@ -1,0 +1,12 @@
+name: 'dataset-verify'
+description: 'Verifies a DataSet power query returns the correct expected number of rows'
+branding:
+  icon: 'book-open'
+  color: 'green'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - 'test'
+  entrypoint: '/action/entrypoint.sh'
+
